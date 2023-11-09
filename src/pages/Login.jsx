@@ -26,7 +26,7 @@ const Login = () => {
     return (
         <div className='formContainer'>
             <div className='formWrapper'>
-            <span className='logo'>Codebenders chat</span>
+            <span className='logo'>Codebenders' chat</span>
             <span className='title'>Login</span>
             <form onSubmit={handleSubmit}>
                 <input type='email' placeholder='Email' />
