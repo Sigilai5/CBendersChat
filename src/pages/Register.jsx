@@ -95,6 +95,7 @@ const Register = () => {
                     <option value='ko'>Korean</option> 
                     <option value='ar'>Arabic</option> 
                     <option value='hi'>Hindi</option>
+                    <option value='ur'>Urdu</option>
                 </select>
                 <input type='file' style={{display:"none"}} id="file" />
                 <label htmlFor="file">
