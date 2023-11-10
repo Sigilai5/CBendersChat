@@ -11,7 +11,22 @@ const Message = ({ message }) => {
   const [translatedText, setTranslatedText] = useState('');
   const [targetLanguage, setTargetLanguage] = useState(''); // Default target language is English
   const l_g = 'trnsl.1.1.20220612T202253Z.cab691f2078c1756.6fe44730d88a05cbe5e2ee861b2c156688ff81ce'; // Your Yandex Cloud API key
+  const [time_stamp, setTimestamp] = useState(null);
 
+  // message.date is a Firebase timestamp convert to time ago format
+  useEffect(() => {
+    const dateObject = message.date.toDate();
+    const formattedDate = dateObject.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+    setTimestamp(formattedDate);
+  }
+  ,[message.date]);
+
+  
+  
  
   useEffect(() => {
     const userRef = collection(db, "users");
@@ -50,6 +65,9 @@ const Message = ({ message }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
+  
+
+
   return (
     <div
       ref={ref}
@@ -64,7 +82,7 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>just now</span>
+        {/* <i>{time_stamp}</i> */}
       </div>
       <div className="messageContent">
         <p>{translatedText}</p>
