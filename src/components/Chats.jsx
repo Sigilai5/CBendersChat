@@ -29,6 +29,14 @@ const Chats = () => {
   
     const handleSelect = (u) => {
         dispatch({type: "SELECT_USER", payload: u});
+
+        // display .sidebar as none
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.style.display = "none";
+
+        // display .chat as block
+        const chat = document.querySelector(".chat");
+        chat.style.display = "block";
     };
 
     return(
