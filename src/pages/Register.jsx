@@ -7,11 +7,13 @@ import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 
+
 const Register = () => {
     const [err, setErr] = useState(false);
     const [loading, setLoading] = useState(false);
     const [userCountry, setUserCountry] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+    {err && <span>Something went wrong.</span>}
     const navigate = useNavigate();  // Ensure you have this line
 
     fetch('https://geolocation-db.com/json/')
@@ -84,10 +86,10 @@ const Register = () => {
                 <span className='logo'>CodBenders Chat</span>
                 <span className='title'>Register</span>
                 <form onSubmit={handleSubmit}>
-                    <input type='text' placeholder='Username' />
-                    <input type='email' placeholder='Email' />
-                    <input type='password' placeholder='Password' />
-                    <select>
+                    <input required type='text' placeholder='Username' />
+                    <input required type='email' placeholder='Email' />
+                    <input required type='password' placeholder='Password' />
+                    <select required>
                     <option value=''>Select your language</option>
                     <option value='en'>English</option>
                     <option value='fr'>French</option>
@@ -103,6 +105,7 @@ const Register = () => {
                     <option value='ur'>Urdu</option>
                 </select>
                     <input
+                        required
                         type='file'
                         style={{ display: 'none' }}
                         id='file'
@@ -116,8 +119,8 @@ const Register = () => {
                         <img src={selectedImage || Add} alt='addAvatar' />
                         <span>Upload your avatar</span>
                     </label>
-                    <button>Sign up</button>
-                    {err && <span>Something went wrong.</span>}
+                    <button type='submit' disabled={loading}>{loading ? 'Please wait...' : 'Sign up'}</button>
+                        {err && <span>Something went wrong.</span>}
                 </form>
                 <p>Already registered? <Link to="/login">Login</Link></p>
             </div>
