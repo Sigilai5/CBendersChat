@@ -6,6 +6,7 @@ import { db,auth,storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import {useNavigate, Link} from "react-router-dom";
+import imageCompression from "browser-image-compression";
 
 const Register = () => {
     const [err, setErr] = useState(false);
@@ -32,12 +33,21 @@ const Register = () => {
         const language = e.target[3].value;
         const file = e.target[4].files[0];
 
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 500,
+            useWebWorker: true
+          }
+
+        const compressedFile = await imageCompression(file, options);
+        
+
 
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
             const storageRef = ref(storage, displayName);
 
-            const uploadTask = uploadBytesResumable(storageRef, file);
+            const uploadTask = uploadBytesResumable(storageRef, compressedFile);
 
         
             uploadTask.on(
@@ -76,7 +86,7 @@ const Register = () => {
     return (
         <div className='formContainer'>
             <div className='formWrapper'>
-            <span className='logo'>Codebenders chat</span>
+            <span className='logo'>CBenders Chat</span>
             <span className='title'>Register</span>
             <form onSubmit={handleSubmit}>
                 <input type='text' placeholder='Username' />
