@@ -91,7 +91,7 @@ $darkColors: #2f2d52;
                 cursor: pointer;
 
                 img {
-                    width: 32px;
+                    width: 72px;
                 }
             }
 
@@ -359,27 +359,7 @@ $darkColors: #2f2d52;
 
     }
 
-    /* Add this to your CSS */
-.avatar-container {
-    position: relative;
-    width: 120px; /* Adjust the size as needed */
-    height: 120px; /* Adjust the size as needed */
-}
-
-.avatar-preview {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.avatar-container img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
+ 
 
 
 }
