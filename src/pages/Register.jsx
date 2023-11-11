@@ -12,6 +12,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const [userCountry, setUserCountry] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+    const navigate = useNavigate();  // Ensure you have this line
 
     fetch('https://geolocation-db.com/json/')
         .then(res => res.json())
@@ -64,9 +65,7 @@ const Register = () => {
                         });
 
                         await setDoc(doc(db, "userChats", res.user.uid), {});
-                        // navigate to home page
-                        setLoading(false);
-                        Navigate("/");
+                        navigate("/");
                     });
                 }
             );
