@@ -83,6 +83,7 @@ const Search = () => {
           type="text"
           placeholder="Find a user e.g brian"
           onKeyUp={handleKey}
+          onKeyPress={(e) => (e.key === 'Enter' || e.key === 'NumpadEnter') && handleSearch()}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />

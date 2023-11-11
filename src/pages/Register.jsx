@@ -103,6 +103,8 @@ const Register = () => {
                     <option value='ar'>Arabic</option> 
                     <option value='hi'>Hindi</option>
                     <option value='ur'>Urdu</option>
+                    <option value='tr'>Turkish</option>
+                    <option value='pt'>Portuguese</option>
                 </select>
                     <input
                         required
