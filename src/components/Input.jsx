@@ -14,6 +14,7 @@ import {
        serverTimestamp
     } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import imageCompression from "browser-image-compression";
 
 
 const Input = () => {
@@ -27,8 +28,16 @@ const Input = () => {
 
         if(img){
 
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 500,
+                useWebWorker: true
+            }
+    
+            const compressedImage = await imageCompression(img, options);
+
             const storageRef = ref(storage, uuid());
-            const uploadTask = uploadBytesResumable(storageRef, img);
+            const uploadTask = uploadBytesResumable(storageRef, compressedImage);
 
             uploadTask.on(
                 (error) => {
@@ -85,7 +94,7 @@ const Input = () => {
         <div className="input">
             <input type="text" placeholder="Type a message" onChange={(e)=>setText(e.target.value)} value={text} />
             <div className="send">
-            <img src={Attach} alt=""/>
+            {/* <img src={Attach} alt=""/> */}
             <input type="file" style={{display:"none"}} id="file" onChange={(e)=>setImg(e.target.files[0])} />
             <label htmlFor="file">
                 <img src={Img} alt=""/>
