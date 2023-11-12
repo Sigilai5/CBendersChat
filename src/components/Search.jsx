@@ -35,9 +35,13 @@ const Search = () => {
     }
   };
 
+  // handel both for PCs and mobiles
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
-  };
+    if (e.key === "Enter" || e.key === "NumpadEnter") {
+      handleSearch();
+    }
+  }
+  
 
   const handleSelect = async () => {
     //check whether the group(chats in firestore) exists, if not create
