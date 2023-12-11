@@ -16,12 +16,12 @@ const Register = () => {
     {err && <span>Something went wrong.</span>}
     const navigate = useNavigate();  // Ensure you have this line
 
-    fetch('https://geolocation-db.com/json/')
-        .then(res => res.json())
-        .then(data => {
-            setUserCountry(data.country_name)
-        })
-        .catch(err => setErr(true));
+    // fetch('https://geolocation-db.com/json/')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setUserCountry(data.country_name)
+    //     })
+    //     .catch(err => setErr(true));
 
     const handleSubmit = async (e) => {
         setLoading(true);
@@ -63,7 +63,7 @@ const Register = () => {
                             email,
                             photoURL: downloadURL,
                             language: language,
-                            country: userCountry,
+                            country: 'N/A',
                         });
 
                         await setDoc(doc(db, "userChats", res.user.uid), {});
